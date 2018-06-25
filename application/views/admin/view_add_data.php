@@ -30,7 +30,7 @@
                                     <div class="col-lg-3">
                                         <div class="trigger_pic">
                                             <img class="img-responsive img-thumbnail" id="thumbnailPic" src="<?php 
-                                            if(isset($result)) echo $result->thumbnailURL; ?>">
+                                            if(isset($result)) echo $result->video_thumbnail_url; ?>">
                                         </div>
                                         <div class="trigger_fileUpload btn btn-default m-t-15">
                                             <span> Change Thumbnail Image </span>
@@ -40,7 +40,7 @@
 
                                         <div class="trigger_pic">
                                             <img class="img-responsive img-thumbnail" id="previewPic" src="<?php 
-                                            if(isset($result)) echo $result->videoPreviewURL; ?>">
+                                            if(isset($result)) echo $result->video_preview_url; ?>">
                                         </div>
                                         <div class="trigger_fileUpload btn btn-default m-t-15">
                                             <span> Change Preview Image </span>
@@ -50,7 +50,7 @@
 
                                         <div class="trigger_pic">
                                             <img class="img-responsive img-thumbnail" id="backgroundPic" src="<?php 
-                                            if(isset($result)) echo $result->video360BackgroundURL; ?>">
+                                            if(isset($result)) echo $result->video_background_url; ?>">
                                         </div>
                                         <div class="trigger_fileUpload btn btn-default m-t-15">
                                             <span> Change Background Image </span>
@@ -66,7 +66,7 @@
                                             <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" 
                                                 id="category" name="category_Id">
                                                 <?php foreach($type as $item) {?>
-                                                    <option value="<?php echo $item->Id?>"><?php echo $item->name?></option>
+                                                    <option value="<?php echo $item->Id?>"><?php echo $item->category_name?></option>
                                                 <?}?>
                                             </select>
                                         </div>
@@ -78,19 +78,19 @@
                                             <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" 
                                                 id="type" name="type_Id">
                                                 <option value="Server">Server</option>
-                                                <option value="Youtube" <?php if(isset($result) && $result->videoType == 'Youtube') echo 'selected'; ?>>Youtube</option>
+                                                <option value="Youtube" <?php if(isset($result) && $result->video_type == 'Youtube') echo 'selected'; ?>>Youtube</option>
                                             </select>
                                         </div>
                                         <!-- -->
 
                                         <!-- Server Video -->
-                                        <div class="form-group m-b-15 server-video" style="display: <?php if(isset($result) && $result->videoType == 'Youtube') echo 'none'; else echo "block"; ?>;">
+                                        <div class="form-group m-b-15 server-video" style="display: <?php if(isset($result) && $result->video_type == 'Youtube') echo 'none'; else echo "block"; ?>;">
                                             <label >Please choose video file*</label>
                                             <input type="hidden" name="tmp_link" value="">
                                             <input type="file" name="link_file" class="filestyle" data-placeholder="No file" accept="*/*">
                                             <label id="selFileName">No File</label>
                                         </div>
-                                        <div class="progress progress-lg m-t-20 m-b-10 form-group server-video" style="display: <?php if(isset($result) && $result->videoType == 'Youtube') echo 'none'; else echo "block"; ?>;">
+                                        <div class="progress progress-lg m-t-20 m-b-10 form-group server-video" style="display: <?php if(isset($result) && $result->video_type == 'Youtube') echo 'none'; else echo "block"; ?>;">
                                             <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;" id="upload_progbar">
                                                 0%
                                             </div>
@@ -98,36 +98,36 @@
                                         <!-- -->
 
                                         <!-- Normal Video -->
-                                        <div class="form-group normal-video", style="display: <?php if(isset($result) && $result->videoType == 'Youtube') echo 'block'; else echo "none"; ?>;">
+                                        <div class="form-group normal-video", style="display: <?php if(isset($result) && $result->video_type == 'Youtube') echo 'block'; else echo "none"; ?>;">
                                             <input type="text" id="url" name="url" parsley-trigger="change" required placeholder="Enter Video URL"   
-                                        class="form-control" value="<?php if(isset($result) && $result->videoType == 'Youtube') echo $result->videoURL; ?>">
+                                        class="form-control" value="<?php if(isset($result) && $result->video_type == 'Youtube') echo $result->video_url; ?>">
                                         </div>
                                         <!-- -->
 
                                         <!-- Title -->
                                         <div class="form-group">
                                             <input type="text" id="title" name="title" parsley-trigger="change" required placeholder="Enter Title"   
-                                        class="form-control" value="<?php if(isset($result)) echo $result->videoTitle; ?>">
+                                        class="form-control" value="<?php if(isset($result)) echo $result->title; ?>">
                                         </div>
                                         <!-- -->
 
                                         <!-- Subtitle -->
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <input type="text" id="subtitle" name="subtitle" parsley-trigger="change" required placeholder="Enter Subtitle"   
                                         class="form-control" value="<?php if(isset($result)) echo $result->videoSubTitle; ?>">
-                                        </div>
+                                        </div> -->
                                         <!-- -->
 
                                         <!-- Description -->
                                         <div class="form-group">
-                                            <input type="text" id="description" name="description" parsley-trigger="change" required placeholder="Enter Description" class="form-control" value="<?php if(isset($result)) echo $result->videoDescription; ?>">
+                                            <input type="text" id="description" name="description" parsley-trigger="change" required placeholder="Enter Description" class="form-control" value="<?php if(isset($result)) echo $result->description; ?>">
                                         </div>
                                         <!-- -->
 
                                         <!-- Credit -->
                                         <div class="form-group">
                                             <input type="text" id="credit" name="credit" parsley-trigger="change" required placeholder="Enter Credit"   
-                                        class="form-control" value="<?php if(isset($result)) echo $result->videoCredit; ?>">
+                                        class="form-control" value="<?php if(isset($result)) echo $result->credit; ?>">
                                         </div>
                                         <!-- -->
 
@@ -137,28 +137,29 @@
                                             <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" 
                                                 id="paid" name="paid_id">
                                                 <option value="N">No</option>
-                                                <option value="Y" <?php if(isset($result) && $result->isPaid == 'Y') echo 'selected'; ?>>Yes</option>
+                                                <option value="Y" <?php if(isset($result) && $result->paid == 'Y') echo 'selected'; ?>>Yes</option>
                                             </select>
                                         </div>
                                         <!-- -->
 
                                         <!-- Price & Unit -->
-                                        <div class="form-group price-detail" style="display: <?php if((isset($result) && $result->isPaid == 'N') || !isset($result)) echo 'none'; else echo "block"; ?>;">
-                                            <input type="number" step="any" min="0" id="price" name="price" parsley-trigger="change" required placeholder="Enter Price" class="form-control" value="<?php if(isset($result) && $result->isPaid == 'Y') echo $result->price; ?>">
+                                        <div class="form-group price-detail" style="display: <?php if((isset($result) && $result->paid == 'N') || !isset($result)) echo 'none'; else echo "block"; ?>;">
+                                            <input type="number" step="any" min="0" id="price" name="price" parsley-trigger="change" required placeholder="Enter Price" class="form-control" value="<?php if(isset($result) && $result->paid == 'Y') echo $result->price; ?>">
                                             
                                             <label for="type">Paid Unit</label>
                                             <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" 
                                                 id="Unit" name="unit_id">
-                                                <option value="USD">USD</option>
-                                                <option value="JPY" <?php if(isset($result) && $result->PaidUnit == 'JPY') echo 'selected'; ?>>JPY</option>
+                                                <?php $k= 1; foreach($currency as $item) {?>
+                                                    <option value="<?php echo $item->Id; ?>" <?php if(isset($result) && $result->currencyID == $k) echo 'selected'; ?>><?php $k++; echo $item->currency; ?></option>
+                                                <?}?>                                                
                                             </select>
                                         </div>
                                         <!-- -->
 
                                         <!-- Capture Time -->
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <input type="number" id="captureTime" step="1" min="0" name="captureTime" parsley-trigger="change" required placeholder="Enter Capture Time"  class="form-control" value="<?php if(isset($result)) echo $result->captureTime; ?>">
-                                        </div>
+                                        </div> -->
                                         <!-- -->
 
                                         <!-- PinToTop -->
@@ -167,22 +168,34 @@
                                             <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" 
                                                 id="PinToTop" name="Pin_id">
                                                 <option value="N">No</option>
-                                                <option value="Y" <?php if(isset($result) && $result->PinToTop == 'Y') echo 'selected'; ?>>Yes</option>
+                                                <option value="Y" <?php if(isset($result) && $result->pin_to_top == 'Y') echo 'selected'; ?>>Yes</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <!-- -->
+
+                                        <!-- Allow Download -->
+                                        <div class="form-group">
+                                            <label for="type">Allow Download</label>
+                                            <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" 
+                                                id="AllowDownload" name="AllowDownload">
+                                                <option value="Y">Yes</option>
+                                                <option value="N" <?php if(isset($result) && $result->allow_download == 'N') echo 'selected'; ?>>No</option>
                                                 
                                             </select>
                                         </div>
                                         <!-- -->
 
                                         <!-- Subtitle Show Time -->
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <input type="number" id="subtitleShowTime" step="any" min="0" name="subtitleShowTime" parsley-trigger="change" required placeholder="Enter Subtitle Show Time" class="form-control" value="<?php if(isset($result)) echo $result->videoSubtitleShowTime; ?>">
-                                        </div>
+                                        </div> -->
                                         <!-- -->
 
                                         <!-- Subtitle End Time -->
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <input type="number" id="subtitleEndTime" step="any" min="0" name="subtitleEndTime" parsley-trigger="change" required placeholder="Enter Subtitle End Time" class="form-control" value="<?php if(isset($result)) echo $result->videoSubtitleEndTime; ?>">
-                                        </div>
+                                        </div> -->
                                         <!-- -->
 
                                         <button class="btn btn-default waves-effect waves-light" type="submit" id="submitBtn">
@@ -211,16 +224,17 @@
         category:$("#category"),
         url:$("#url"),
         title:$("#title"),
-        subtitle:$("#subtitle"),
+        /*subtitle:$("#subtitle"),*/
         description:$("#description"),
         credit:$("#credit"),
         price:$("#price"),
         paidUnit:$("#Unit"),
-        captureTime:$("#captureTime"),
-        subtitleShowTime:$("#subtitleShowTime"),
-        subtitleEndTime:$("#subtitleEndTime"),
+        /*captureTime:$("#captureTime"),*/
+        /*subtitleShowTime:$("#subtitleShowTime"),
+        subtitleEndTime:$("#subtitleEndTime"),*/
         paid:$("#paid"),
         pinToTop:$("#PinToTop"),
+        allowDownload:$("#AllowDownload"),
         uploadProgbar:$("#upload_progbar"),
         linkUpload:$("#linkUpload"),
         role: $("input[name='role']"),
@@ -292,12 +306,17 @@
         compareSubmitBtn();
     });
     function initVariables() {
-        var Linkfile = "<?php if(isset($result)) echo $result->fileName;?>";
-        if(Linkfile !="") {
+        if("<?php if(isset($result)) echo false; else echo true; ?>"){
+            submitBtnDisable(true);
+        }
+
+        var Linkfile = "<?php if(isset($result)) echo $result->file_name;?>";
+        var VideoType = "<?php if(isset($result)) echo $result->video_type;?>";
+        if(Linkfile !="" && VideoType == "Server") {
             $dom.selFileName.html(Linkfile);
         }
-        $dom.tmpLink.val(Linkfile);
-        compareSubmitBtn();
+        //$dom.tmpLink.val(Linkfile);
+        //compareSubmitBtn();
     }
     (function() {
         initVariables();
@@ -338,12 +357,16 @@
     })();
 
     function compareSubmitBtn() {
-        if($dom.thumbnailPic.attr("src") !="" && $dom.previewPic.attr("src") != "" && $dom.backgroundPic.attr("src") != "" && $dom.title.val() != "" && $dom.subtitle.val() != "" && $dom.credit.val() != ""  && $dom.captureTime.val() != "" && $dom.subtitleShowTime.val() != "" && $dom.subtitleEndTime.val() != "" && $dom.description.val() != ""){
-            if((($dom.type.val() == 'Youtube' && $dom.url.val() != "") || ($dom.type.val() == 'Server' && $dom.tmpLink.val() !="" )) && (($dom.paid.val() == 'Y' && $dom.price.val() != "") || $dom.paid.val() == 'N') )
+        submitBtnDisable(true);
+        if($dom.thumbnailPic.attr("src") !="" && $dom.previewPic.attr("src") != "" && $dom.backgroundPic.attr("src") != "" && $dom.title.val() != "" && $dom.credit.val() != "" && $dom.description.val() != "" && (($dom.type.val() == 'Youtube' && $dom.url.val() != '') || ($dom.type.val() == 'Server' && ($dom.tmpLink.val() != '' || $dom.selFileName.html() != 'No File'))) && (($dom.paid.val() == 'Y' && $dom.price.val() != "") || $dom.paid.val() == 'N')){
+            /*if((($dom.type.val() == 'Youtube' && $dom.url.val() != '') || ($dom.type.val() == 'Server' && $dom.tmpLink.val() != '' )) && ($dom.paid.val() == 'Y' && $dom.price.val() != "")) {
+                submitBtnDisable(false);
+            }*/
             submitBtnDisable(false);
         }
-        else
+        else{
             submitBtnDisable(true);
+        }    
     }
 
     function submitBtnDisable(disable) {
@@ -362,14 +385,21 @@
     });
 
     $dom.type.on('change', function(){
-        compareSubmitBtn();
+        //$("#selFileName").css("display", "none");
         if($dom.type.val() == 'Server'){
             $(".server-video").css("display", "block");
             $(".normal-video").css("display", "none");
+            $dom.tmpLink.val('');
+
+            $dom.uploadProgbar.attr("aria-valuenow", 0);
+            $dom.uploadProgbar.text = '0%';
+            $dom.uploadProgbar.css("width", '0%');
         } else {
             $(".server-video").css("display", "none");
             $(".normal-video").css("display", "block");
+            $dom.url.val('');     
         }
+        compareSubmitBtn();
     });
 
     $dom.paid.on('change', function(){
@@ -401,17 +431,17 @@
         compareSubmitBtn();
     });
 
-    $dom.captureTime.on('change', function(){
+    /*$dom.captureTime.on('change', function(){
         compareSubmitBtn();
-    });
+    });*/
 
-    $dom.subtitleShowTime.on('change', function(){
+    /*$dom.subtitleShowTime.on('change', function(){
         compareSubmitBtn();
-    });
+    });*/
 
-    $dom.subtitleEndTime.on('change', function(){
+    /*$dom.subtitleEndTime.on('change', function(){
         compareSubmitBtn();
-    });
+    });*/
 
     $dom.paid.on('change', function(){
         compareSubmitBtn();
@@ -422,6 +452,10 @@
     });
 
     $dom.pinToTop.on('change', function(){
+        compareSubmitBtn();
+    });
+
+    $dom.allowDownload.on('change', function(){
         compareSubmitBtn();
     });
 

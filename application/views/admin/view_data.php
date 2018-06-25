@@ -46,7 +46,7 @@
                                         <th>PreviewURL</th>
                                         <th>BackgroundURL</th>
                                         <th>Title</th>
-                                        <th>Subtitle</th>
+                                        <!-- <th>Subtitle</th> -->
                                         <th>Description</th>
                                         <th>Duration</th>
                                         <th>Credit</th>
@@ -54,11 +54,12 @@
                                         <th>PaidContent</th>
                                         <th>Price</th>
                                         <th>PaidUnit</th>
-                                        <th>CaptureTime</th>
+                                        <!-- <th>CaptureTime</th> -->
                                         <th>PinToTop</th>
+                                        <th>AllowDownload</th>
                                         <th>VideoViews</th>
-                                        <th>VideoSubtitleShowTime</th>
-                                        <th>VideoSubtitleShowTime</th>
+                                        <!-- <th>VideoSubtitleShowTime</th>
+                                        <th>VideoSubtitleShowTime</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -74,7 +75,7 @@
                                         <th>PreviewURL</th>
                                         <th>BackgroundURL</th>
                                         <th>Title</th>
-                                        <th>Subtitle</th>
+                                        <!-- <th>Subtitle</th> -->
                                         <th>Description</th>
                                         <th>Duration</th>
                                         <th>Credit</th>
@@ -82,11 +83,12 @@
                                         <th>PaidContent</th>
                                         <th>Price</th>
                                         <th>PaidUnit</th>
-                                        <th>CaptureTime</th>
+                                        <!-- <th>CaptureTime</th> -->
                                         <th>PinToTop</th>
+                                        <th>AllowDownload</th>
                                         <th>VideoViews</th>
-                                        <th>VideoSubtitleShowTime</th>
-                                        <th>VideoSubtitleShowTime</th>
+                                        <!-- <th>VideoSubtitleShowTime</th>
+                                        <th>VideoSubtitleShowTime</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -105,7 +107,7 @@
 
 <script type="text/javascript">
     var table;
-    var tableName = "<?php global $MYSQL; echo $MYSQL['_dataDB']?>";
+    var tableName = "<?php global $MYSQL; echo $MYSQL['_videoDB']?>";
     var _type = "-1";
     var handleDataTableButtons = function() {
         table = $("#datatable-flexar").DataTable({
@@ -180,62 +182,67 @@
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
-                { 
+                /*{ 
                     targets: [ 8 ], //video Subtitle column 
                     orderable: false, //set not orderable
                     className: "dt-center"
-                },
+                },*/
                 { 
-                    targets: [ 9 ], //video Description column 
+                    targets: [ 8 ], //video Description column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 10 ], //video Duration column 
+                    targets: [ 9 ], //video Duration column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 11 ], //video Credit column 
+                    targets: [ 10 ], //video Credit column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 12 ], //file Name column 
+                    targets: [ 11 ], //file Name column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 13 ], //isPaid column 
+                    targets: [ 12 ], //isPaid column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 14 ], //price column 
+                    targets: [ 13 ], //price column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 15 ], //PaidUnit column 
+                    targets: [ 14 ], //PaidUnit column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
-                { 
+                /*{ 
                     targets: [ 16 ], //capture Time column 
                     orderable: false, //set not orderable
                     className: "dt-center"
-                },
+                },*/
                 { 
-                    targets: [ 17 ], //Pin To Top column 
+                    targets: [ 15 ], //Pin To Top column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 18 ], //Video View column 
+                    targets: [ 16 ], //Allow Download column
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
+                    targets: [ 17 ], //Video View column 
+                    orderable: false, //set not orderable
+                    className: "dt-center"
+                },
+                /*{ 
                     targets: [ 19 ], //subtitle Show Time column 
                     orderable: false, //set not orderable
                     className: "dt-center"
@@ -244,7 +251,7 @@
                     targets: [ 20 ], //subtitle End Time column 
                     orderable: false, //set not orderable
                     className: "dt-center"
-                },
+                },*/
                 {
                     targets: [ -1 ], 
                     orderable: false, //set not orderable

@@ -18,8 +18,8 @@ class Api extends CI_Controller {
 		global $MYSQL;
 		$data['status'] = "fail";
 		$data['result'] = "";
-		$select = ' a.*, b.name as category';
-		$ret = $this->User_model->getVideoDatas($MYSQL['_dataDB'].' a', $select);
+		$select = ' a.*, c.category_name, d.title, d.credit, d.description, d.duration, e.price, f.currency';
+		$ret = $this->User_model->getVideoDatas($MYSQL['_videoDB'].' a', $select);
 		if(!empty($ret)) {
 			$data['status'] = "success";
 			$data['result'] = $ret;

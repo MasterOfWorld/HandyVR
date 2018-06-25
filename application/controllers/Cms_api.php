@@ -40,14 +40,14 @@ class Cms_api extends CI_Controller {
 		if($this->logonCheck()) {
 			global $MYSQL;
 			$conAry = array();
-			$column_order = array('Id', 'name', null, null); 
-			$column_search = array('name');
-			$type_data = $this->User_model->getTableDatas($MYSQL['_typeDB'], $conAry, $column_search, $column_order);
+			$column_order = array('Id', 'category_name', null, null); 
+			$column_search = array('category_name');
+			$type_data = $this->User_model->getTableDatas($MYSQL['_categoriesDB'], $conAry, $column_search, $column_order);
 			$data = array();
 			foreach ($type_data as $item) {
 				$row = array();
 				$row[] = $item->Id;
-                $row[] = $item->name;
+                $row[] = $item->category_name;
                 $row[] = $item->created;
                 $row[] = '<a href="javascript:void(0)" class="on-default edit-row" onclick="EditType('.$item->Id.')" title="Edit" ><i class="fa fa-pencil cus"></i></a>';
 				$data[] = $row;
@@ -55,8 +55,8 @@ class Cms_api extends CI_Controller {
 
 			$output = array(
 					"draw" => $_POST['draw'],
-					"recordsTotal" => $this->User_model->getCounts($MYSQL['_typeDB'], $conAry),
-					"recordsFiltered" => $this->User_model->count_filtered($MYSQL['_typeDB'], $conAry, 
+					"recordsTotal" => $this->User_model->getCounts($MYSQL['_categoriesDB'], $conAry),
+					"recordsFiltered" => $this->User_model->count_filtered($MYSQL['_categoriesDB'], $conAry, 
 						$column_search, $column_order),
 					"data" => $data,
 			);
@@ -70,10 +70,10 @@ class Cms_api extends CI_Controller {
 		$typeName = $this->input->post('typename');
 		
 		if($typeId != '') {
-			$ret = $this->User_model->getRow($MYSQL['_typeDB'], array('name'=>$typeName,  'Id !='=>$typeId));
+			$ret = $this->User_model->getRow($MYSQL['_categoriesDB'], array('category_name'=>$typeName,  'Id !='=>$typeId));
 			if(empty($ret)) {
-				$updateAry = array('name'=>$typeName, 'modified'=>date('Y-m-d'));
-				$ret1 = $this->User_model->updateData($MYSQL['_typeDB'], array('Id'=>$typeId), $updateAry);
+				$updateAry = array('category_name'=>$typeName, 'modified'=>date('Y-m-d'));
+				$ret1 = $this->User_model->updateData($MYSQL['_categoriesDB'], array('Id'=>$typeId), $updateAry);
 				if($ret1 > 0) {
 					$this->session->set_flashdata('messagePr', 'Update Type Successfully..');
 				} else {
@@ -83,10 +83,10 @@ class Cms_api extends CI_Controller {
 				$this->session->set_flashdata('messagePr', 'Unable to Update Type.. Same Type Name is existed!');
 			}
 		} else {
-			$ret2 = $this->User_model->getRow($MYSQL['_typeDB'], array('name'=>$typeName));
+			$ret2 = $this->User_model->getRow($MYSQL['_categoriesDB'], array('category_name'=>$typeName));
 			if(empty($ret2)) {
-				$insertAry  = array('name'=>$typeName, 'created'=>date('Y-m-d'), 'modified'=>date('Y-m-d'));
-				$ret3 = $this->User_model->insertData($MYSQL['_typeDB'], $insertAry);
+				$insertAry  = array('category_name'=>$typeName, 'created'=>date('Y-m-d'), 'modified'=>date('Y-m-d'));
+				$ret3 = $this->User_model->insertData($MYSQL['_categoriesDB'], $insertAry);
 				if($ret3) {
 					$this->session->set_flashdata('messagePr', 'Insert Type Successfully..');
 				} else {
@@ -127,14 +127,15 @@ class Cms_api extends CI_Controller {
 	public function getData($type) {
 		if($this->logonCheck()) {
 			global $MYSQL;
-			$select = ' a.*, b.name as type_name';
+			//$select = ' a.*, c.category_name, d.title, d.credit, d.description, d.duration, e.price, f.currency, g.subtitle_content, g.subtitle_show_time, g.subtitle_end_time';
+			$select = ' a.*, c.category_name, d.title, d.credit, d.description, d.duration, e.price, f.currency';
 			$conAry = array();
 			if($type != "-1") {
-				$conAry = array('a.videoCategory'=>$type);
+				$conAry = array('b.category_id'=>$type);
 			}
-			$column_order = array(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null); 
-			$column_search = array('a.videoTitle', 'a.videoDescription');
-			$travel_cate = $this->User_model->getTableDatas($MYSQL['_dataDB'].' a', $conAry, $column_search, 
+			$column_order = array(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+			$column_search = array('d.title', 'd.description');
+			$travel_cate = $this->User_model->getTableDatas($MYSQL['_videoDB'].' a', $conAry, $column_search, 
 				$column_order, 'data', $select);
 			$data = array();
 			$no = $_POST['start'];
@@ -150,34 +151,35 @@ class Cms_api extends CI_Controller {
 					$strAction = '<a href="javascript:void(0)" class="on-default edit-row" onclick="PlayVideo('.$item->Id.')" title="Play" ><i class="fa fa-file-video-o cus"></i></a> <a href="javascript:void(0)" class="on-default edit-row" onclick="EditData('.$item->Id.')" title="Edit" ><i class="fa fa-pencil cus"></i></a> <a href="javascript:void(0)" class="on-default remove-row" onclick="RemoveData('.$item->Id.')" title="Remove" ><i class="fa fa-trash-o cus"></i></a>';	
 				/*}*/
 				$row[] = $no;
-				$row[] = $item->type_name;
-				$row[] = $item->videoType;
-				$row[] = $item->videoURL;
-				$row[] = '<img src="'.$item->thumbnailURL.'"class="thumb-md" alt="">';
-				$row[] = '<img src="'.$item->videoPreviewURL.'"class="thumb-md" alt="">';
-				$row[] = '<img src="'.$item->video360BackgroundURL.'"class="thumb-md" alt="">';
-				$row[] = $item->videoTitle;
-				$row[] = $item->videoSubTitle;
-				$row[] = $item->videoDescription;
-				$row[] = $item->videoDuration;
-				$row[] = $item->videoCredit;
-				$row[] = $item->fileName;
-				$row[] = $item->isPaid;
+				$row[] = $item->category_name;
+				$row[] = $item->video_type;
+				$row[] = $item->video_url;
+				$row[] = '<img src="'.$item->video_thumbnail_url.'"class="thumb-md" alt="">';
+				$row[] = '<img src="'.$item->video_preview_url.'"class="thumb-md" alt="">';
+				$row[] = '<img src="'.$item->video_preview_url.'"class="thumb-md" alt="">';
+				$row[] = $item->title;
+				/*$row[] = $item->subtitle_content;*/
+				$row[] = $item->description;
+				$row[] = $item->duration;
+				$row[] = $item->credit;
+				$row[] = $item->file_name;
+				$row[] = $item->paid;
 				$row[] = $item->price;
-				$row[] = $item->PaidUnit;
-				$row[] = $item->captureTime;
-				$row[] = $item->PinToTop;
-				$row[] = $item->VideoViews;
-				$row[] = $item->videoSubtitleShowTime;
-				$row[] = $item->videoSubtitleEndTime;
+				$row[] = $item->currency;
+				/*$row[] = $item->video_preview_capture_time;*/
+				$row[] = $item->pin_to_top;
+				$row[] = $item->allow_download;
+				$row[] = $item->video_views;
+				/*$row[] = $item->subtitle_show_time;
+				$row[] = $item->subtitle_end_time;*/
 				$row[] = $strAction;
 				$data[] = $row;
 			}
 
 			$output = array(
 					"draw" => $_POST['draw'],
-					"recordsTotal" => $this->User_model->getCounts($MYSQL['_dataDB'].' a', $conAry),
-					"recordsFiltered" => $this->User_model->count_filtered($MYSQL['_dataDB'].' a', $conAry, 
+					"recordsTotal" => $this->User_model->getCounts($MYSQL['_videoDB'].' a', $conAry),
+					"recordsFiltered" => $this->User_model->count_filtered($MYSQL['_videoDB'].' a', $conAry, 
 						$column_search, $column_order,'data', $select),
 					"data" => $data,
 			);
@@ -198,18 +200,26 @@ class Cms_api extends CI_Controller {
 		if($this->logonCheck()) {
 			global $MYSQL;
 			$Id = $this->input->post('Id');
-			$data = $this->User_model->getRow($MYSQL['_dataDB'], array('Id' => $Id));
-			$this->deleteFile($this->upload_img_thumb_path, $data->marker);
-			$this->deleteFile($this->upload_data_path, $data->link);
-			$this->User_model->deleteByField($MYSQL['_dataDB'], 'Id', $Id);
+			$data = $this->User_model->getRow($MYSQL['_videoDB'], array('Id' => $Id));
+			if($data->video_type == 'Server'){
+				$this->deleteFile($data->video_url);
+			}
+			$this->deleteFile($data->video_thumbnail_url);
+			$this->deleteFile($data->video_preview_url);
+			$this->deleteFile($data->video_background_url);
+
+			$this->User_model->deleteByField($MYSQL['_videoDB'], 'Id', $Id);
+			$this->User_model->deleteByField($MYSQL['_categoryDB'], 'vr_video_id', $Id);
+			$this->User_model->deleteByField($MYSQL['_detailsDB'], 'vr_video_id', $Id);
+			$this->User_model->deleteByField($MYSQL['_priceDB'], 'vr_video_id', $Id);
 			echo json_encode(array("status" => TRUE));
 		}
 	}
-	private function deleteFile( $path, $file_name)
+	private function deleteFile( $path)
 	{
-		$removefile = $path.$file_name;
-		if( file_exists( $removefile ) )
-			unlink( $removefile );
+		//$removefile = $path.$file_name;
+		if( file_exists( $path ) )
+			unlink( $path );
 	}
 	public function add_data(){
 		if($this->logonCheck()) {
@@ -230,18 +240,19 @@ class Cms_api extends CI_Controller {
 			$duration = "0:00";
 			$modifiedStr = "";
 			$title = $this->input->post('title');
-			$subtitle = $this->input->post('subtitle');
+			/*$subtitle = $this->input->post('subtitle');*/
 			$description = $this->input->post('description');
 			$credit = $this->input->post('credit');
 			$isPaid = $this->input->post('paid_id');
 			$paidContent = $p['paid_id'];
 			$price = "";
 			$paidUnit = "";
-			$captureTime = $this->input->post('captureTime');
+			/*$captureTime = $this->input->post('captureTime');*/
 			$pinToTop = $p['Pin_id'];
+			$allowDownload = $p['AllowDownload'];
 			$videoViews = 0;
-			$videoSubtitleShowTime = $this->input->post('subtitleShowTime');
-			$videoSubtitleEndTime = $this->input->post('subtitleEndTime');
+			/*$videoSubtitleShowTime = $this->input->post('subtitleShowTime');
+			$videoSubtitleEndTime = $this->input->post('subtitleEndTime');*/
 			$fullPath = "";
 
 			if($isPaid == 'Y'){
@@ -253,13 +264,12 @@ class Cms_api extends CI_Controller {
 			$filesize = "0 bytes";
 
 			if($dataId !='') {
-				$data = $this->User_model->getRow($MYSQL['_dataDB'], array('Id' => $dataId));
-				$thumbnail_old = $data->thumbnailURL;
-				$preview_old = $data->videoPreviewURL;
-				$background_old = $data->video360BackgroundURL;
-				$fullPath = $data->videoURL;
-				$duration = $data->videoDuration;
-				
+				$data = $this->User_model->getRow($MYSQL['_videoDB'], array('Id' => $dataId));
+				$thumbnail_old = $data->video_thumbnail_url;
+				$preview_old = $data->video_preview_url;
+				$background_old = $data->video_background_url;
+				$fullPath = $data->video_url;
+				//$duration = $data->duration;
 			}
 
 			if(isset($_FILES["thumbnail"])) {
@@ -340,23 +350,45 @@ class Cms_api extends CI_Controller {
 					}
 				}
 			} else {
-				$link_file = $this->input->post('url');
-				$fullPath = $link_file;
+				if($type == 'Youtube'){
+					$link_file = $this->input->post('url');
+					$fullPath = $link_file;
+				}
 			}
 
 			if($dataId !='') {
-				$updateAry = array('videoCategory'=>$categoryId, 'videoType'=>$type , 'thumbnailURL'=>$thumbnail, 'video360BackgroundURL'=>$background, 'videoPreviewURL'=>$preview, 'videoURL'=>$fullPath, 'videoDuration'=>$duration, 'videoTitle'=>$title, 'videoSubTitle'=>$subtitle, 'videoDescription'=>$description, 'videoCredit'=>$credit, 'fileName'=>$link_file, 'isPaid'=>$paidContent, 'price'=>$price, 'PaidUnit'=>$paidUnit, 'captureTime'=>$captureTime, 'PinToTop'=>$pinToTop, 'videoSubtitleShowTime'=>$videoSubtitleShowTime, 'videoSubtitleEndTime'=>$videoSubtitleEndTime);
-				$ret = $this->User_model->updateData($MYSQL['_dataDB'], array('Id'=>$dataId), $updateAry);
-				if($ret > 0) {
+				$updateVideoAry = array('video_type'=>$type , 'video_thumbnail_url'=>$thumbnail, 'video_background_url'=>$background, 'video_preview_url'=>$preview, 'video_url'=>$fullPath, 'file_name'=>$link_file, 'paid'=>$paidContent, 'pin_to_top'=>$pinToTop, 'allow_download'=>$allowDownload, 'updated'=>date('Y-m-d H:i:s'));
+				$retVideo = $this->User_model->updateData($MYSQL['_videoDB'], array('Id'=>$dataId), $updateVideoAry);
+
+				$updateCategoryAry = array('vr_category_id' => $categoryId);
+				$retCategory = $this->User_model->updateData($MYSQL['_categoryDB'], array('vr_video_id'=>$dataId), $updateCategoryAry);
+
+				$updateDetailsAry = array('title' => $title, 'credit' => $credit, 'description' => $description, 'duration' => $duration);
+				$retDetails = $this->User_model->updateData($MYSQL['_detailsDB'], array('vr_video_id'=>$dataId), $updateDetailsAry);
+
+				$updatePriceAry = array('currency_id' => $paidUnit, 'price' => $price);
+				$retPrice = $this->User_model->updateData($MYSQL['_priceDB'], array('vr_video_id'=>$dataId), $updatePriceAry);
+
+				if($retVideo > 0) {
 					echo json_encode(array("status"=>TRUE));
 				} else {
 					echo json_encode(array("status"=>FALSE));
 				}
-			} 
+			}
 			else {
-				$updateAry = array('videoCategory'=>$categoryId, 'videoType'=>$type , 'thumbnailURL'=>$thumbnail, 'video360BackgroundURL'=>$background, 'videoPreviewURL'=>$preview, 'videoURL'=>$fullPath, 'videoDuration'=>$duration, 'videoTitle'=>$title,  'videoSubTitle'=>$subtitle, 'videoDescription'=>$description, 'videoCredit'=>$credit, 'fileName'=>$link_file, 'isPaid'=>$paidContent, 'price'=>$price, 'PaidUnit'=>$paidUnit, 'captureTime'=>$captureTime, 'PinToTop'=>$pinToTop, 'videoSubtitleShowTime'=>$videoSubtitleShowTime, 'videoSubtitleEndTime'=>$videoSubtitleEndTime, 'VideoViews'=>$videoViews);
-				$ret = $this->User_model->insertData($MYSQL['_dataDB'], $updateAry);
-				if($ret) {
+				$updateVideoAry = array('video_type'=>$type , 'video_thumbnail_url'=>$thumbnail, 'video_background_url'=>$background, 'video_preview_url'=>$preview, 'video_url'=>$fullPath, 'file_name'=>$link_file, 'paid'=>$paidContent, 'pin_to_top'=>$pinToTop, 'allow_download'=>$allowDownload, 'video_views' => 0, 'created'=>date('Y-m-d H:i:s'));
+				$retVideo = $this->User_model->insertData($MYSQL['_videoDB'], $updateVideoAry);
+
+				$updateCategoryAry = array('vr_video_id'=>$retVideo, 'vr_category_id' => $categoryId);
+				$retCategory = $this->User_model->insertData($MYSQL['_categoryDB'], $updateCategoryAry);
+
+				$updateDetailsAry = array('vr_video_id'=>$retVideo, 'title' => $title, 'credit' => $credit, 'description' => $description, 'duration' => $duration);
+				$retDetails = $this->User_model->insertData($MYSQL['_detailsDB'], $updateDetailsAry);
+
+				$updatePriceAry = array('vr_video_id'=>$retVideo, 'currency_id' => $paidUnit, 'price' => $price);
+				$retPrice = $this->User_model->insertData($MYSQL['_priceDB'], $updatePriceAry);
+
+				if($retVideo) {
 					// $this->session->set_flashdata('messagePr', 'Insert Video Successfully..');
 					echo json_encode(array("status"=>TRUE));
 				} else {

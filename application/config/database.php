@@ -80,9 +80,9 @@ $db['default'] = array(
 	//'password' => '3d*bZ%.HXq83',     // Read Only 
 	'username' => 'root',  // Write permission
 	'password' => 'autoset',   // Write permission
-	'database' => 'digitals_videobook',
+	'database' => 'handy_vr',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => 'tbl_',
+	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,

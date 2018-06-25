@@ -74,7 +74,7 @@
         <!-- END wrapper -->
 <script type="text/javascript">
     var table;
-    var tableName = "<?php global $MYSQL; echo $MYSQL['_typeDB']?>";
+    var tableName = "<?php global $MYSQL; echo $MYSQL['_categoriesDB']?>";
     var $dom = {
         typeId:$("input[name=type_id]"),
         typename:$("input[name=typename]")
@@ -165,7 +165,7 @@
                 console.log(data);
                 // reload_table();
                 $dom.typeId.val(data.Id);
-                $dom.typename.val(data.name);
+                $dom.typename.val(data.category_name);
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
