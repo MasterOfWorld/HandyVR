@@ -65,15 +65,9 @@
                                             <label for="type">Category</label>
                                             <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" 
                                                 id="category" name="category_Id">
-<<<<<<< HEAD
                                                 <?php foreach($type as $item) { ?>
                                                     <option value="<?php echo $item->Id; ?>"><?php echo $item->category_name; ?></option>
                                                 <?php } ?>
-=======
-                                                <?php foreach($type as $item) {?>
-                                                    <option value="<?php echo $item->Id?>"><?php echo $item->category_name?></option>
-                                                <?}?>
->>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
                                             </select>
                                         </div>
                                         <!-- -->
@@ -115,16 +109,6 @@
                                             <input type="text" id="title" name="title" parsley-trigger="change" required placeholder="Enter Title"   
                                         class="form-control" value="<?php if(isset($result)) echo $result->title; ?>">
                                         </div>
-<<<<<<< HEAD
-=======
-                                        <!-- -->
-
-                                        <!-- Subtitle -->
-                                        <!-- <div class="form-group">
-                                            <input type="text" id="subtitle" name="subtitle" parsley-trigger="change" required placeholder="Enter Subtitle"   
-                                        class="form-control" value="<?php if(isset($result)) echo $result->videoSubTitle; ?>">
-                                        </div> -->
->>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
                                         <!-- -->
 
                                         
@@ -161,24 +145,11 @@
                                                 id="Unit" name="unit_id">
                                                 <?php $k= 1; foreach($currency as $item) {?>
                                                     <option value="<?php echo $item->Id; ?>" <?php if(isset($result) && $result->currencyID == $k) echo 'selected'; ?>><?php $k++; echo $item->currency; ?></option>
-<<<<<<< HEAD
                                                 <?php } ?>                                                
-=======
-                                                <?}?>                                                
->>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
                                             </select>
                                         </div>
                                         <!-- -->
 
-<<<<<<< HEAD
-=======
-                                        <!-- Capture Time -->
-                                        <!-- <div class="form-group">
-                                            <input type="number" id="captureTime" step="1" min="0" name="captureTime" parsley-trigger="change" required placeholder="Enter Capture Time"  class="form-control" value="<?php if(isset($result)) echo $result->captureTime; ?>">
-                                        </div> -->
-                                        <!-- -->
-
->>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
                                         <!-- PinToTop -->
                                         <div class="form-group">
                                             <label for="type">PinToTop</label>
@@ -326,13 +297,8 @@
             submitBtnDisable(true);
         }
 
-<<<<<<< HEAD
         var Linkfile = "<?php if(isset($result)) echo $result->file_name; ?>";
         var VideoType = "<?php if(isset($result)) echo $result->video_type; ?>";
-=======
-        var Linkfile = "<?php if(isset($result)) echo $result->file_name;?>";
-        var VideoType = "<?php if(isset($result)) echo $result->video_type;?>";
->>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
         if(Linkfile !="" && VideoType == "Server") {
             $dom.selFileName.html(Linkfile);
         }
