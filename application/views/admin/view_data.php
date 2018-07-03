@@ -100,7 +100,11 @@
 
 <script type="text/javascript">
     var table;
+<<<<<<< HEAD
     var tableName = "<?php global $MYSQL; echo $MYSQL['_videoDB']; ?>";
+=======
+    var tableName = "<?php global $MYSQL; echo $MYSQL['_videoDB']?>";
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
     var _type = "-1";
     var handleDataTableButtons = function() {
         table = $("#datatable-flexar").DataTable({

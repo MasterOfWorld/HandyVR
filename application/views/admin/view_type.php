@@ -217,6 +217,7 @@
                 console.log(data);
                 // reload_table();
                 $dom.typeId.val(data.Id);
+<<<<<<< HEAD
                 $dom.typeEnglishName.val(data.category_name);
                 $dom.typeSimplifiedChineseName.val(data.zh_CN);
                 $dom.typeTraditionalChineseName.val(data.zh_TW);
@@ -232,6 +233,9 @@
                 $dom.typeThaiName.val(data.th);
                 $dom.typeHungarianName.val(data.hu);
                 $dom.typeArabicName.val(data.ar);
+=======
+                $dom.typename.val(data.category_name);
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

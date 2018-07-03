@@ -84,9 +84,15 @@ class Cms_api extends CI_Controller {
 		$typeArabicName = $this->input->post('type_arabic_name');
 		
 		if($typeId != '') {
+<<<<<<< HEAD
 			$ret = $this->User_model->getRow($MYSQL['_categoriesDB'], array('category_name'=>$typeEnglishName,  'Id !='=>$typeId));
 			if(empty($ret)) {
 				$updateAry = array('category_name'=>$typeEnglishName, 'en'=>$typeEnglishName, 'zh_CN'=>$typeSimplifiedChineseName, 'zh_TW'=>$typeTraditionalChineseName, 'ja'=>$typeJapaneseName, 'ko'=>$typeKoreanName, 'es'=>$typeSpanishName, 'de'=>$typeGermanName, 'ru'=>$typeRussianName, 'fr'=>$typeFrenchName, 'it'=>$typeItalianName, 'pl'=>$typePolishName, 'pt_PT'=>$typePortugueseName, 'th'=>$typeThaiName, 'hu'=>$typeHungarianName, 'ar'=>$typeArabicName ,'modified'=>date('Y-m-d'));
+=======
+			$ret = $this->User_model->getRow($MYSQL['_categoriesDB'], array('category_name'=>$typeName,  'Id !='=>$typeId));
+			if(empty($ret)) {
+				$updateAry = array('category_name'=>$typeName, 'modified'=>date('Y-m-d'));
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
 				$ret1 = $this->User_model->updateData($MYSQL['_categoriesDB'], array('Id'=>$typeId), $updateAry);
 				if($ret1 > 0) {
 					$this->session->set_flashdata('messagePr', 'Update Type Successfully..');
@@ -97,9 +103,15 @@ class Cms_api extends CI_Controller {
 				$this->session->set_flashdata('messagePr', 'Unable to Update Type.. Same Type Name is existed!');
 			}
 		} else {
+<<<<<<< HEAD
 			$ret2 = $this->User_model->getRow($MYSQL['_categoriesDB'], array('category_name'=>$typeEnglishName));
 			if(empty($ret2)) {
 				$insertAry  = array('category_name'=>$typeEnglishName, 'en'=>$typeEnglishName, 'zh_CN'=>$typeSimplifiedChineseName, 'zh_TW'=>$typeTraditionalChineseName, 'ja'=>$typeJapaneseName, 'ko'=>$typeKoreanName, 'es'=>$typeSpanishName, 'de'=>$typeGermanName, 'ru'=>$typeRussianName, 'fr'=>$typeFrenchName, 'it'=>$typeItalianName, 'pl'=>$typePolishName, 'pt_PT'=>$typePortugueseName, 'th'=>$typeThaiName, 'hu'=>$typeHungarianName, 'ar'=>$typeArabicName , 'created'=>date('Y-m-d'), 'modified'=>date('Y-m-d'));
+=======
+			$ret2 = $this->User_model->getRow($MYSQL['_categoriesDB'], array('category_name'=>$typeName));
+			if(empty($ret2)) {
+				$insertAry  = array('category_name'=>$typeName, 'created'=>date('Y-m-d'), 'modified'=>date('Y-m-d'));
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
 				$ret3 = $this->User_model->insertData($MYSQL['_categoriesDB'], $insertAry);
 				if($ret3) {
 					$this->session->set_flashdata('messagePr', 'Insert Type Successfully..');
@@ -170,7 +182,11 @@ class Cms_api extends CI_Controller {
 				$row[] = $item->video_url;
 				$row[] = '<img src="'.$item->video_thumbnail_url.'"class="thumb-md" alt="">';
 				$row[] = '<img src="'.$item->video_preview_url.'"class="thumb-md" alt="">';
+<<<<<<< HEAD
 				$row[] = '<img src="'.$item->video_background_url.'"class="thumb-md" alt="">';
+=======
+				$row[] = '<img src="'.$item->video_preview_url.'"class="thumb-md" alt="">';
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
 				$row[] = $item->title;
 				/*$row[] = $item->subtitle_content;*/
 				$row[] = $item->description;
@@ -259,8 +275,13 @@ class Cms_api extends CI_Controller {
 			$price = "";
 			$paidUnit = "";
 			/*$captureTime = $this->input->post('captureTime');*/
+<<<<<<< HEAD
 			$pinToTop = $this->input->post('Pin_id');
 			$allowDownload = $this->input->post('AllowDownload');
+=======
+			$pinToTop = $p['Pin_id'];
+			$allowDownload = $p['AllowDownload'];
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
 			$videoViews = 0;
 			/*$videoSubtitleShowTime = $this->input->post('subtitleShowTime');
 			$videoSubtitleEndTime = $this->input->post('subtitleEndTime');*/
@@ -280,7 +301,10 @@ class Cms_api extends CI_Controller {
 				$preview_old = $data->video_preview_url;
 				$background_old = $data->video_background_url;
 				$fullPath = $data->video_url;
+<<<<<<< HEAD
 				$link_file = $data->file_name;
+=======
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
 				//$duration = $data->duration;
 			}
 

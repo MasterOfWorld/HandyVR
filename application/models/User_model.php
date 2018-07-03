@@ -264,7 +264,10 @@ class User_model extends CI_Model {
 		$this->db->join($MYSQL['_detailsDB'].' d', 'a.Id = d.vr_video_id', 'left');
 		$this->db->join($MYSQL['_priceDB'].' e', 'a.Id = e.vr_video_id', 'left');
 		$this->db->join($MYSQL['_currencyDB'].' f', 'e.currency_id = f.Id', 'left');
+<<<<<<< HEAD
 		$this->db->order_by("c.Id", "asc");
+=======
+>>>>>>> 5693ccc441ede558d75a6228333f9a5517a191e9
 		//$where = "b.userMail = $email OR a.user_id='0'";
 		//$Id = $this->getUsersIdByMail($email);
 		//$this->db->where('user_id','0');
