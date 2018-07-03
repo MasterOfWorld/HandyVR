@@ -10,21 +10,21 @@
 
 		<title>Handy VR</title>
 		<?php if($kind == 'table') { ?>
-			<link href="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.css');?>" rel="stylesheet" type="text/css"/>
-		    <link href="<?php echo base_url('assets/plugins/datatables/buttons.bootstrap.min.css');?>" rel="stylesheet" type="text/css"/>
-		    <link href="<?php echo base_url('assets/plugins/datatables/responsive.bootstrap.min.css');?>" rel="stylesheet" type="text/css"/>
-		    <link href="<?php echo base_url('assets/plugins/datatables/scroller.bootstrap.min.css');?>" rel="stylesheet" type="text/css"/>
-		    <link href="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.css');?>" rel="stylesheet" type="text/css"/>
-		    <link href="<?php echo base_url('assets/plugins/datatables/fixedColumns.dataTables.min.css');?>" rel="stylesheet" type="text/css"/>
+			<link href="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.css'); ?>" rel="stylesheet" type="text/css"/>
+		    <link href="<?php echo base_url('assets/plugins/datatables/buttons.bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>
+		    <link href="<?php echo base_url('assets/plugins/datatables/responsive.bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>
+		    <link href="<?php echo base_url('assets/plugins/datatables/scroller.bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>
+		    <link href="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.min.css'); ?>" rel="stylesheet" type="text/css"/>
+		    <link href="<?php echo base_url('assets/plugins/datatables/fixedColumns.dataTables.min.css'); ?>" rel="stylesheet" type="text/css"/>
 	    <? } ?>
-	    <link href="<?php echo base_url('assets/plugins/bootstrap-sweetalert/sweet-alert.css');?>" rel="stylesheet" type="text/css">
-		<link href="<?php echo base_url('assets/plugins/morris/morris.css');?>" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url('assets/css/core.css');?>" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url('assets/css/components.css');?>" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url('assets/css/icons.css');?>" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url('assets/css/pages.css');?>" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url('assets/css/responsive.css');?>" rel="stylesheet" type="text/css" />
+	    <link href="<?php echo base_url('assets/plugins/bootstrap-sweetalert/sweet-alert.css'); ?>" rel="stylesheet" type="text/css">
+		<link href="<?php echo base_url('assets/plugins/morris/morris.css'); ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url('assets/css/core.css'); ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url('assets/css/components.css'); ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url('assets/css/icons.css'); ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url('assets/css/pages.css'); ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url('assets/css/responsive.css'); ?>" rel="stylesheet" type="text/css" />
 
 		
 
@@ -33,45 +33,45 @@
 		  <script src="<?php echo base_url('js/html5shiv.js');?>"></script>
 		  <script src="<?php echo base_url('js/respond.min.js');?>"></script>
 		<![endif]-->
-		<script src="<?php echo base_url('assets/js/modernizr.min.js');?>"></script>
+		<script src="<?php echo base_url('assets/js/modernizr.min.js'); ?>"></script>
 		<script>
             var resizefunc = [];
         </script>
 		<!-- jQuery  -->
-		<script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/jquery.form.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/detect.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/fastclick.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/jquery.slimscroll.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/jquery.blockUI.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/waves.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/wow.min.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/jquery.nicescroll.js');?>"></script>
-		<script src="<?php echo base_url('assets/js/jquery.scrollTo.min.js');?>"></script>
+		<script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/js/jquery.form.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/detect.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/fastclick.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/jquery.slimscroll.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/jquery.blockUI.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/waves.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/wow.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/jquery.nicescroll.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/js/jquery.scrollTo.min.js'); ?>"></script>
 
-		<script src="<?php echo base_url('assets/plugins/waypoints/lib/jquery.waypoints.js');?>"></script>
-        <script src="<?php echo base_url('assets/plugins/counterup/jquery.counterup.min.js');?>"></script>
-        <script src="<?php echo base_url('assets/plugins/parsleyjs/parsley.min.js');?>"></script>
-        <script src="<?php echo base_url('assets/plugins/notifyjs/js/notify.js');?>"></script>
-        <script src="<?php echo base_url('assets/plugins/notifications/notify-metro.js');?>"></script>
-        <script src="<?php echo base_url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js');?>"></script>
+		<script src="<?php echo base_url('assets/plugins/waypoints/lib/jquery.waypoints.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/plugins/counterup/jquery.counterup.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/plugins/parsleyjs/parsley.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/plugins/notifyjs/js/notify.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/plugins/notifications/notify-metro.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js'); ?>"></script>
         <?php if($kind == 'table') { ?>
-        	<script src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.js');?>"></script>
-	        <script src="<?php echo base_url('assets/plugins/datatables/dataTables.buttons.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/buttons.bootstrap.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/jszip.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/pdfmake.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/vfs_fonts.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/buttons.html5.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/buttons.print.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.responsive.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/responsive.bootstrap.min.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.colVis.js');?>"></script>
-			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.fixedColumns.min.js');?>"></script>
-		<?}?>
-		<script src="<?php echo base_url('assets/js/jquery.core.js');?>"></script>
+        	<script src="<?php echo base_url('assets/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.bootstrap.js'); ?>"></script>
+	        <script src="<?php echo base_url('assets/plugins/datatables/dataTables.buttons.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/buttons.bootstrap.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/jszip.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/pdfmake.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/vfs_fonts.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/buttons.html5.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/buttons.print.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.responsive.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/responsive.bootstrap.min.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.colVis.js'); ?>"></script>
+			<script src="<?php echo base_url('assets/plugins/datatables/dataTables.fixedColumns.min.js'); ?>"></script>
+		<? } ?>
+		<script src="<?php echo base_url('assets/js/jquery.core.js'); ?>"></script>
 
 	</head>
 	<body class="fixed-left">
@@ -83,7 +83,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="<?php echo base_url().'Cms/dashboard'?>" class="logo"><i class="icon-camrecorder icon-c-logo"></i><span>Handy VR</span></a>
+                        <a href="<?php echo base_url().'Cms/dashboard'; ?>" class="logo"><i class="icon-camrecorder icon-c-logo"></i><span>Handy VR</span></a>
                         <!-- Image Logo here -->
                         <!--<a href="index.html" class="logo">-->
                             <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->
@@ -105,9 +105,9 @@
 
                             <ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="dropdown top-menu-item-xs">
-                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo base_url('assets/images/def_avatar.jpg');?>" alt="user-img" class="img-circle"> </a>
+                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="<?php echo base_url('assets/images/def_avatar.jpg'); ?>" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url().'Cms/logout';?>"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
+                                        <li><a href="<?php echo base_url().'Cms/logout'; ?>"><i class="ti-power-off m-r-10 text-danger"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -125,11 +125,11 @@
                         	<li class="text-muted menu-title">Dashboard</li>
 
                             <li class="has_sub">
-                                <a href="<?php echo base_url().'Cms/type'; ?>" class="waves-effect <?php if($uri == 'type') echo 'active';?>"><i class="ti-server"></i> <span> Category</span> <span class="menu-arrow"></span> </a>
+                                <a href="<?php echo base_url().'Cms/type'; ?>" class="waves-effect <?php if($uri == 'type') echo 'active'; ?>"><i class="ti-server"></i> <span> Category</span> <span class="menu-arrow"></span> </a>
                             </li>
                             
                             <li class="has_sub">
-                                <a href="<?php echo base_url().'Cms/data'; ?>" class="waves-effect <?php if($uri == 'data') echo 'active';?>"><i class="ti-server"></i> <span> Data</span> <span class="menu-arrow"></span> </a>
+                                <a href="<?php echo base_url().'Cms/data'; ?>" class="waves-effect <?php if($uri == 'data') echo 'active'; ?>"><i class="ti-server"></i> <span> Data</span> <span class="menu-arrow"></span> </a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>

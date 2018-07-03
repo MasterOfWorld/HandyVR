@@ -46,9 +46,7 @@ class Cms extends CI_Controller {
 			$param['uri'] = '';
 			$param['kind'] = '';
 			$this->load->view("admin/view_header", $param);	
-			$data['type_cnt'] = $this->User_model->getCounts($MYSQL['_typeDB'], array());  // count Type
-			$data['data_cnt'] = $this->User_model->getCounts($MYSQL['_dataDB'], array());  // count data
-			$data['video_cnt'] = $this->User_model->getCounts($MYSQL['_videoDB'], array());  // count Video
+			$data['data_cnt'] = $this->User_model->getCounts($MYSQL['_videoDB'], array());  // count data
 			$this->load->view("admin/view_dashboard", $data);
 		}
 	}
@@ -83,7 +81,7 @@ class Cms extends CI_Controller {
 		if($this->logonCheck()) {
 			$param['uri'] = 'data';
 			$param['kind'] = 'table';
-			$data['type'] = $this->User_model->getDatas($MYSQL['_typeDB'], array());  // count Type
+			$data['type'] = $this->User_model->getDatas($MYSQL['_categoriesDB'], array());  // count Type
 			$this->load->view("admin/view_header", $param);	
 			$this->load->view("admin/view_data", $data);
 		}
@@ -95,14 +93,24 @@ class Cms extends CI_Controller {
 			$param['uri'] = 'data';
 			$param['kind'] = '';
 			$this->load->view("admin/view_header", $param);	
-			$data['type'] = $this->User_model->getDatas($MYSQL['_typeDB'], array());
+			$data['type'] = $this->User_model->getDatas($MYSQL['_categoriesDB'], array());
+			$data['currency'] = $this->User_model->getDatas($MYSQL['_currencyDB'], array());
+
 			if($data['data_Id'] !='') {
-				$ret = $this->User_model->getDataById($MYSQL['_dataDB'], $data['data_Id']);
+				$ret = $this->User_model->getDataById($MYSQL['_videoDB'], $data['data_Id']);
 				$data['result'] = $ret;
-				/*$data['result']->thumbnailURL = $data['result']->thumbnailURL;
-				$data['result']->videoPreviewURL = $data['result']->videoPreviewURL;
-				$data['result']->video360BackgroundURL = $data['result']->video360BackgroundURL;
-				$data['result']->videoTitle = $data['result']->videoTitle;*/
+
+				$ret_category = $this->User_model->getDataByVideoId($MYSQL['_categoryDB'], $data['data_Id']);
+				$data['result']->categoryID = $ret_category->vr_category_id;
+
+				$ret_details = $this->User_model->getDataByVideoId($MYSQL['_detailsDB'], $data['data_Id']);
+				$data['result']->title = $ret_details->title;
+				$data['result']->credit = $ret_details->credit;
+				$data['result']->description = $ret_details->description;
+
+				$ret_price = $this->User_model->getDataByVideoId($MYSQL['_priceDB'], $data['data_Id']);
+				$data['result']->currencyID = $ret_price->currency_id;
+				$data['result']->price = $ret_price->price;
 			}
 			$this->load->view("admin/view_add_data", $data);
 		}
@@ -115,8 +123,8 @@ class Cms extends CI_Controller {
 			$param['kind'] = '';
 			$this->load->view("admin/view_header", $param);	
 			if($id !='') {
-				$data['result'] = $this->User_model->getRow($MYSQL['_dataDB'], array('Id'=>$id));
-				$data['result']->link = base_url().$this->upload_data_path.$data['result']->fileName;
+				$data['result'] = $this->User_model->getRow($MYSQL['_videoDB'], array('Id'=>$id));
+				$data['result']->link = base_url().$this->upload_data_path.$data['result']->file_name;
 			}
 			$this->load->view("admin/view_play_video", $data);
 		}

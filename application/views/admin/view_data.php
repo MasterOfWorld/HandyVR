@@ -1,7 +1,7 @@
-<link href="<?php echo base_url('assets/plugins/bootstrap-select/css/bootstrap-select.min.css');?>" rel="stylesheet" />
-<script src="<?php echo base_url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js');?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js');?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/js/jquery.app.js');?>"></script>
+<link href="<?php echo base_url('assets/plugins/bootstrap-select/css/bootstrap-select.min.css'); ?>" rel="stylesheet" />
+<script src="<?php echo base_url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/js/jquery.app.js'); ?>"></script>
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
@@ -21,14 +21,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- <div class="col-sm-2">
-                        <select class="selectpicker show-tick form-control" data-style="btn-default btn-custom" id="main_type" name="main_type">
-                            <option value="-1">All</option>
-                            <?php foreach($type as $item) {?>
-                                <option value="<?php echo $item->Id?>"><?php echo $item->name?></option>
-                            <?}?>
-                        </select>
-                    </div> -->
+                    
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -46,7 +39,7 @@
                                         <th>PreviewURL</th>
                                         <th>BackgroundURL</th>
                                         <th>Title</th>
-                                        <th>Subtitle</th>
+                                        <!-- <th>Subtitle</th> -->
                                         <th>Description</th>
                                         <th>Duration</th>
                                         <th>Credit</th>
@@ -54,11 +47,12 @@
                                         <th>PaidContent</th>
                                         <th>Price</th>
                                         <th>PaidUnit</th>
-                                        <th>CaptureTime</th>
+                                        <!-- <th>CaptureTime</th> -->
                                         <th>PinToTop</th>
+                                        <th>AllowDownload</th>
                                         <th>VideoViews</th>
-                                        <th>VideoSubtitleShowTime</th>
-                                        <th>VideoSubtitleShowTime</th>
+                                        <!-- <th>VideoSubtitleShowTime</th>
+                                        <th>VideoSubtitleShowTime</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -74,7 +68,7 @@
                                         <th>PreviewURL</th>
                                         <th>BackgroundURL</th>
                                         <th>Title</th>
-                                        <th>Subtitle</th>
+                                        <!-- <th>Subtitle</th> -->
                                         <th>Description</th>
                                         <th>Duration</th>
                                         <th>Credit</th>
@@ -82,11 +76,12 @@
                                         <th>PaidContent</th>
                                         <th>Price</th>
                                         <th>PaidUnit</th>
-                                        <th>CaptureTime</th>
+                                        <!-- <th>CaptureTime</th> -->
                                         <th>PinToTop</th>
+                                        <th>AllowDownload</th>
                                         <th>VideoViews</th>
-                                        <th>VideoSubtitleShowTime</th>
-                                        <th>VideoSubtitleShowTime</th>
+                                        <!-- <th>VideoSubtitleShowTime</th>
+                                        <th>VideoSubtitleShowTime</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -97,15 +92,15 @@
             </div> <!-- container -->
         </div> <!-- content -->    
     </div> <!-- content-page -->
-</div>
+
         <!-- END wrapper -->
 <form action="" id="goForm" method="POST"> 
-    <input type="hidden" name="data_Id" value="">;
+    <input type="hidden" name="data_Id" value="">
 </form>
 
 <script type="text/javascript">
     var table;
-    var tableName = "<?php global $MYSQL; echo $MYSQL['_dataDB']?>";
+    var tableName = "<?php global $MYSQL; echo $MYSQL['_videoDB']; ?>";
     var _type = "-1";
     var handleDataTableButtons = function() {
         table = $("#datatable-flexar").DataTable({
@@ -180,62 +175,67 @@
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
-                { 
+                /*{ 
                     targets: [ 8 ], //video Subtitle column 
                     orderable: false, //set not orderable
                     className: "dt-center"
-                },
+                },*/
                 { 
-                    targets: [ 9 ], //video Description column 
+                    targets: [ 8 ], //video Description column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 10 ], //video Duration column 
+                    targets: [ 9 ], //video Duration column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 11 ], //video Credit column 
+                    targets: [ 10 ], //video Credit column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 12 ], //file Name column 
+                    targets: [ 11 ], //file Name column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 13 ], //isPaid column 
+                    targets: [ 12 ], //isPaid column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 14 ], //price column 
+                    targets: [ 13 ], //price column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 15 ], //PaidUnit column 
+                    targets: [ 14 ], //PaidUnit column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
-                { 
+                /*{ 
                     targets: [ 16 ], //capture Time column 
                     orderable: false, //set not orderable
                     className: "dt-center"
-                },
+                },*/
                 { 
-                    targets: [ 17 ], //Pin To Top column 
+                    targets: [ 15 ], //Pin To Top column 
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
-                    targets: [ 18 ], //Video View column 
+                    targets: [ 16 ], //Allow Download column
                     orderable: false, //set not orderable
                     className: "dt-center"
                 },
                 { 
+                    targets: [ 17 ], //Video View column 
+                    orderable: false, //set not orderable
+                    className: "dt-center"
+                },
+                /*{ 
                     targets: [ 19 ], //subtitle Show Time column 
                     orderable: false, //set not orderable
                     className: "dt-center"
@@ -244,7 +244,7 @@
                     targets: [ 20 ], //subtitle End Time column 
                     orderable: false, //set not orderable
                     className: "dt-center"
-                },
+                },*/
                 {
                     targets: [ -1 ], 
                     orderable: false, //set not orderable
@@ -252,7 +252,7 @@
                 }
             ],
             ajax: {
-                url: "<?php echo site_url('Cms_api/getData')?>/"+ _type,
+                url: "<?php echo site_url('Cms_api/getData'); ?>/"+ _type,
                 type: "POST"
             },
         })
@@ -269,13 +269,13 @@
     function reload_table()
     {
         table.ajax.reload(null,false); //reload datatable ajax 
-    }
+    };
     function PlayVideo(_idx) {
         goTo(_idx, 'play');
-    }
+    };
     function EditData(_idx) {
         goTo(_idx, 'edit');
-    }
+    };
     var RemoveData = function(_idx) {
         swal({
             title: "Are you sure?",
@@ -289,7 +289,7 @@
         }, function(isConfirm) {
             if(isConfirm) {
                 $.ajax({
-                    url : "<?php echo site_url('Cms_api/delData')?>",
+                    url : "<?php echo site_url('Cms_api/delData'); ?>",
                     data: {Id:_idx},
                     type: "POST",
                     success: function(data)
@@ -309,23 +309,23 @@
                 });
             }
         });
-    }
+    };
     var $dom = {
         goForm:$('#goForm'),
         addBtn:$('#addBtn'),
         dataId:$("input[name=data_Id]"),
         mainType:$("#main_type")
-    }
+    };
     $dom.mainType.on('change', function (e) {
         _type = $dom.mainType.val();
-        table.ajax.url("<?php echo site_url('Cms_api/getData')?>/" + _type).load();
+        table.ajax.url("<?php echo site_url('Cms_api/getData'); ?>/" + _type).load();
     });
     $dom.addBtn.on('click', function() {
         goTo('', 'edit');
-    })
+    });
     function UpdateAvaiable(_idx) {
         $.ajax({
-            url : "<?php echo site_url('Cms_api/ajaxOnOff')?>",
+            url : "<?php echo site_url('Cms_api/ajaxOnOff'); ?>",
             data: {Id:_idx, field: 'isactive', tbl_Name: tableName},
             type: "POST",
             success: function(data)
@@ -338,22 +338,22 @@
                 swal("Error!", "", "error");  
             }
         });
-    }
+    };
     function goTo(idx='') {
         if(idx !='')
             $dom.dataId.val(idx);
         $dom.goForm.submit();
-    }
+    };
     function goTo(_idx='', _kind) {
         if(_kind == 'edit') {
-            $dom.goForm.attr("action", "<?php echo site_url('Cms/add_edit_data')?>");
+            $dom.goForm.attr("action", "<?php echo site_url('Cms/add_edit_data'); ?>");
         } else if(_kind == 'play') {
-            $dom.goForm.attr("action", "<?php echo site_url('Cms/play_video')?>");
+            $dom.goForm.attr("action", "<?php echo site_url('Cms/play_video'); ?>");
         }
         if(_idx !='')
             $dom.dataId.val(_idx);
         $dom.goForm.submit();
-    }
+    };
 
     $('.dt-buttons').css('display', 'none'); // remove Copy, CSV, Excel, Print, etc.
 

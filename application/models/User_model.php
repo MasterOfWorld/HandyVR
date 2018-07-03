@@ -48,7 +48,12 @@ class User_model extends CI_Model {
 		}
         $this->db->from($tbl_name);
 		if($kind =='data') {
-			$this->db->join($MYSQL['_typeDB'].' b', 'a.videoCategory = b.Id', 'left');
+			$this->db->join($MYSQL['_categoryDB'].' b', 'a.Id = b.vr_video_id', 'left');
+			$this->db->join($MYSQL['_categoriesDB'].' c', 'b.vr_category_id = c.Id', 'left');
+			$this->db->join($MYSQL['_detailsDB'].' d', 'a.Id = d.vr_video_id', 'left');
+			$this->db->join($MYSQL['_priceDB'].' e', 'a.Id = e.vr_video_id', 'left');
+			$this->db->join($MYSQL['_currencyDB'].' f', 'e.currency_id = f.Id', 'left');
+			//$this->db->join($MYSQL['_subtitleDB'].' g', 'a.Id = g.video_id', 'left');
 		}
 		if(!empty($conAry))
 			$this->db->where( $conAry );
@@ -145,6 +150,14 @@ class User_model extends CI_Model {
         $query = $this->db->get();
         return $query->row();
     }
+    public function getDataByVideoId($tbl_name, $Id)
+    {
+        $this->db->from($tbl_name);
+        $this->db->where('vr_video_id',$Id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     public function appInstall($phone) {
     	global $MYSQL;
     	$ret = $this->getRow($MYSQL['_customeDB'], array('phone' => $phone));
@@ -246,7 +259,12 @@ class User_model extends CI_Model {
 			$this->db->select($select);
 		}
         $this->db->from($tbl_name);
-		$this->db->join($MYSQL['_typeDB'].' b', 'a.videoCategory = b.Id', 'left');
+		$this->db->join($MYSQL['_categoryDB'].' b', 'a.Id = b.vr_video_id', 'left');
+		$this->db->join($MYSQL['_categoriesDB'].' c', 'b.vr_category_id = c.Id', 'left');
+		$this->db->join($MYSQL['_detailsDB'].' d', 'a.Id = d.vr_video_id', 'left');
+		$this->db->join($MYSQL['_priceDB'].' e', 'a.Id = e.vr_video_id', 'left');
+		$this->db->join($MYSQL['_currencyDB'].' f', 'e.currency_id = f.Id', 'left');
+		$this->db->order_by("c.Id", "asc");
 		//$where = "b.userMail = $email OR a.user_id='0'";
 		//$Id = $this->getUsersIdByMail($email);
 		//$this->db->where('user_id','0');
@@ -261,8 +279,8 @@ class User_model extends CI_Model {
 		global $MYSQL;
 		//$this->db->from($MYSQL['_dataDB']);
 		$this->db->where('Id', $dataId);
-		$this->db->set('VideoViews', 'VideoViews+1', false);
-		$this->db->update($MYSQL['_dataDB']);
+		$this->db->set('video_views', 'video_views+1', false);
+		$this->db->update($MYSQL['_videoDB']);
 
 		/*$str = "UPDATE tbl_data SET VideoViews = VideoViews + 1 WHERE Id = '63'";
 		$this->db->query($str);*/
